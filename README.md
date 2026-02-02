@@ -2,8 +2,6 @@
 
 A comprehensive web-based Student Management System built with PHP and MySQL. This system allows educational institutions to manage student records, track attendance, assign grades, and schedule classes efficiently.
 
-![Project Status](https://img.shields.io/badge/status-active-success.svg)
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
 ## 🚀 Features
 
@@ -85,16 +83,3 @@ student_management_system/
 
 - **Username**: `admin`
 - **Password**: `admin123`
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-1. Fork the project
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-
-This project is licensed under the MIT License.
