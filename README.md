@@ -31,27 +31,7 @@ A comprehensive web-based Student Management System built with PHP and MySQL. Th
 ## 📂 File Structure
 
 ```
-student_management_system/
-├── config/             # Database connection configuration
-│   └── database.php
-├── database/           # SQL schema scripts
-│   └── schema.sql
-├── public/             # Publicly accessible files
-│   ├── css/            # Stylesheets
-│   └── index.php       # Main entry point (Router)
-├── src/                # Backend logic & Models
-│   ├── Auth.php
-│   ├── Student.php
-│   ├── Attendance.php
-│   ├── Grade.php
-│   └── Schedule.php
-└── templates/          # Frontend views/pages
-    ├── dashboard.php
-    ├── students.php
-    ├── student_profile.php
-    ├── attendance.php
-    ├── grades.php
-    └── schedule.php
+student_management_system/ ├── config/ # Database connection configuration │ └── database.php ├── database/ # SQL schema scripts │ └── schema.sql ├── public/ # Publicly accessible files │ ├── css/ # Stylesheets │ └── index.php # Main entry point (Router) ├── src/ # Backend logic & Models │ ├── Auth.php │ ├── Student.php │ ├── Attendance.php │ ├── Grade.php │ └── Schedule.php └── templates/ # Frontend views/pages ├── dashboard.php ├── students.php ├── student_profile.php ├── attendance.php ├── grades.php └── schedule.php
 ```
 
 ## ⚙️ Installation & Setup
