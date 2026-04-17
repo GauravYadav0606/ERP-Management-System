@@ -1,16 +1,12 @@
 <?php
 $stmt = $pdo->query("SELECT COUNT(*) FROM students");
 $studentCount = $stmt->fetchColumn();
-
 $stmt = $pdo->query("SELECT COUNT(*) FROM courses");
 $courseCount = $stmt->fetchColumn();
-
 $stmt = $pdo->query("SELECT * FROM students ORDER BY created_at DESC LIMIT 5");
 $recentStudents = $stmt->fetchAll();
-
 $currentDay = date('l'); 
 $currentTime = date('H:i:s');
-
 $sql = "SELECT COUNT(*) FROM schedules 
         WHERE day_of_week = ? 
         AND start_time <= ? 
@@ -19,7 +15,6 @@ $stmt = $pdo->prepare($sql);
 $stmt->execute([$currentDay, $currentTime, $currentTime]);
 $activeSessions = $stmt->fetchColumn();
 ?>
-
 <div class="card-grid">
     <div class="stat-card">
         <div class="stat-title">Total Students</div>
@@ -35,7 +30,6 @@ $activeSessions = $stmt->fetchColumn();
         <div class="stat-title" style="font-size:0.7rem;">Classes in progress</div> 
     </div>
 </div>
-
 <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Recent Students</h3>
 <table>
     <thead>

@@ -1,10 +1,8 @@
 <?php
 require_once __DIR__ . '/../src/Schedule.php';
 require_once __DIR__ . '/../src/Grade.php';
-
 $scheduleModel = new Schedule($pdo);
 $gradeModel = new Grade($pdo);
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['add_schedule'])) {
         $scheduleModel->addSchedule($_POST['course_id'], $_POST['day'], $_POST['start_time'], $_POST['end_time'], $_POST['room']);
@@ -14,15 +12,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $scheduleModel->deleteSchedule($_POST['id']);
     }
 }
-
 $schedules = $scheduleModel->getAll();
 $courses = $gradeModel->getCourses();
 ?>
-
 <div class="header">
     <button onclick="openModal('addScheduleModal')" class="btn btn-primary" style="width: auto;">+ Add Class</button>
 </div>
-
 <table>
     <thead>
         <tr>
@@ -42,7 +37,6 @@ $courses = $gradeModel->getCourses();
             <td><?php echo htmlspecialchars($item['room']); ?></td>
             <td>
                 <button onclick='openEditModal(<?php echo json_encode($item); ?>)' class="btn" style="padding:0.25rem 0.5rem; font-size:0.85rem; background:#fbbf24; color:#92400e;">Edit</button>
-                
                 <form method="POST" style="display:inline;" onsubmit="return confirm('Delete this schedule?');">
                     <input type="hidden" name="id" value="<?php echo $item['id']; ?>">
                     <button type="submit" name="delete_schedule" class="btn" style="padding:0.25rem 0.5rem; font-size:0.85rem; background:#fecaca; color:#b91c1c;">Delete</button>
@@ -52,7 +46,6 @@ $courses = $gradeModel->getCourses();
         <?php endforeach; ?>
     </tbody>
 </table>
-
 <div id="addScheduleModal" class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); align-items:center; justify-content:center;">
     <div style="background:white; padding:2rem; border-radius:1rem; width:400px; margin: 10% auto; position: relative;">
         <h3 style="margin-bottom:1rem;">Add Class Schedule</h3>
@@ -96,7 +89,6 @@ $courses = $gradeModel->getCourses();
         </form>
     </div>
 </div>
-
 <div id="editScheduleModal" class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); align-items:center; justify-content:center;">
     <div style="background:white; padding:2rem; border-radius:1rem; width:400px; margin: 10% auto; position: relative;">
         <h3 style="margin-bottom:1rem;">Edit Class Schedule</h3>
@@ -141,16 +133,13 @@ $courses = $gradeModel->getCourses();
         </form>
     </div>
 </div>
-
 <script>
 function openModal(id) {
     document.getElementById(id).style.display = 'flex';
 }
-
 function closeModal(id) {
     document.getElementById(id).style.display = 'none';
 }
-
 function openEditModal(data) {
     document.getElementById('edit_id').value = data.id;
     document.getElementById('edit_course_id').value = data.course_id;
@@ -161,7 +150,6 @@ function openEditModal(data) {
     
     openModal('editScheduleModal');
 }
-
 window.onclick = function(event) {
     if (event.target.className === 'modal') {
         event.target.style.display = "none";

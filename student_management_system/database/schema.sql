@@ -62,5 +62,5 @@ CREATE TABLE IF NOT EXISTS schedules (
 -- Default Admin User (password: admin123)
 -- hash generated using password_hash('admin123', PASSWORD_DEFAULT)
 INSERT INTO users (username, password, role) VALUES 
-('admin', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin')
+('admin', '$2y$10$qVor/9Kl9uOJyv6lHQI31.3lrsXGT8zFN79KUYVVd/.HzV/kX6pHu', 'admin')
 ON DUPLICATE KEY UPDATE username=username;

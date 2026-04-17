@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +13,6 @@
                 🎓 EduSync
             </div>
             <h2>Welcome Back</h2>
-            
             <?php if (isset($_POST['login'])): ?>
                 <?php
                     $username = $_POST['username'];
@@ -26,7 +24,6 @@
                     }
                 ?>
             <?php endif; ?>
-
             <form method="POST">
                 <div class="form-group">
                     <label for="username">Username</label>

@@ -2,22 +2,18 @@
 require_once __DIR__ . '/../src/Student.php';
 require_once __DIR__ . '/../src/Grade.php';
 require_once __DIR__ . '/../src/Attendance.php';
-
 $studentModel = new Student($pdo);
 $gradeModel = new Grade($pdo);
 $attendanceModel = new Attendance($pdo);
-
 if (!isset($_GET['id'])) {
     echo "Student ID required.";
     exit;
 }
-
 $student = $studentModel->getById($_GET['id']);
 if (!$student) {
     echo "Student not found.";
     exit;
 }
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['edit_grade'])) {
         $gradeModel->updateGrade($_POST['grade_id'], $_POST['grade'], $_POST['remarks']);
@@ -25,14 +21,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $gradeModel->deleteGrade($_POST['grade_id']);
     }
 }
-
 try {
     $stmt = $pdo->prepare("SELECT g.*, c.name as course_name, c.code FROM grades g JOIN courses c ON g.course_id = c.id WHERE g.student_id = ?");
     $stmt->execute([$student['id']]);
     $grades = $stmt->fetchAll();
-
-    $attendanceRecords = $attendanceModel->getStudentAttendance($student['id']);
-    
+    $attendanceRecords = $attendanceModel->getStudentAttendance($student['id']);    
     $totalClasses = count($attendanceRecords);
     $presentCount = 0;
     foreach ($attendanceRecords as $att) {
@@ -45,9 +38,7 @@ try {
 } catch (Exception $e) {
     echo "Error loading data: " . $e->getMessage();
 }
-
 ?>
-
 <style>
 .attendance-stat {
     text-align: center;
@@ -68,18 +59,14 @@ try {
     font-weight: 600;
 }
 </style>
-
 <div class="header">
     <div style="display:flex; align-items:center; gap:1rem;">
         <a href="index.php?page=students" class="btn" style="background: var(--secondary-color); color: white;">&larr; Back</a>
     </div>
 </div>
-
-<div class="card-grid" style="grid-template-columns: 1fr 2fr; align-items: start;">
-    
+<div class="card-grid" style="grid-template-columns: 1fr 2fr; align-items: start;">    
     <div class="stat-card">
-        <h3 style="margin-bottom:1rem; border-bottom:1px solid #eee; padding-bottom:0.5rem;">Personal Details</h3>
-        
+        <h3 style="margin-bottom:1rem; border-bottom:1px solid #eee; padding-bottom:0.5rem;">Personal Details</h3>      
         <div style="display:flex; justify-content:space-between; align-items:flex-start;">
             <div style="flex:1;">
                 <p><strong>Name:</strong> <?php echo htmlspecialchars($student['name']); ?></p>
@@ -90,7 +77,6 @@ try {
                 <p><strong>Address:</strong> <?php echo htmlspecialchars($student['address']); ?></p>
                 <p><strong>Joined:</strong> <?php echo date('M d, Y', strtotime($student['created_at'])); ?></p>
             </div>
-
             <div style="flex:0 0 120px; margin-left:1rem;">
                 <div class="attendance-stat" style="margin:0; padding:1rem 0.5rem;">
                     <div class="percentage-large" style="font-size:2rem;"><?php echo $percentage; ?>%</div>
@@ -99,7 +85,6 @@ try {
             </div>
         </div>
     </div>
-
     <div>
         <div class="stat-card" style="margin-bottom:1.5rem;">
             <h3 style="margin-bottom:1rem;">Academic Grades</h3>
@@ -133,8 +118,7 @@ try {
                     </tbody>
                 </table>
             <?php endif; ?>
-        </div>
-        
+        </div>  
         <div id="editGradeModal" class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); align-items:center; justify-content:center;">
             <div style="background:white; padding:2rem; border-radius:1rem; width:400px; margin: 10% auto; position: relative;">
                 <h3 style="margin-bottom:1rem;">Edit Grade</h3>
@@ -157,7 +141,6 @@ try {
                 </form>
             </div>
         </div>
-
         <script>
         function openGradeModal(data) {
             document.getElementById('edit_grade_id').value = data.id;
@@ -167,7 +150,6 @@ try {
             document.getElementById('editGradeModal').style.display = 'flex';
         }
         </script>
-
         <div class="stat-card">
             <h3 style="margin-bottom:1rem;">Attendance History</h3>
             <?php if (empty($attendanceRecords)): ?>
