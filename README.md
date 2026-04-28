@@ -1,4 +1,4 @@
-# Student Management System - EduSync
+# ERP Management System - EduSync
 
 A comprehensive web-based Student Management System built with PHP and MySQL. This system allows educational institutions to manage student records, track attendance, assign grades, and schedule classes efficiently.
 
